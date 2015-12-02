@@ -18,7 +18,7 @@ public class AdvancedSearchPanel extends JPanel {
 	public AdvancedSearchPanel() {
 		super(new GridBagLayout());
 		
-		GridBagConstraints gbc = new GridBagConstraints(0, 0, 1, 1, 1, 0.4,
+		GridBagConstraints gbc = new GridBagConstraints(0, 0, 1, 1, 1, 0.3,
 				GridBagConstraints.CENTER, GridBagConstraints.BOTH,
 				new Insets(3, 3, 3, 3), 0, 0);
 		
@@ -35,7 +35,7 @@ public class AdvancedSearchPanel extends JPanel {
 		
 		resultsTable = new JTable();
 		gbc.gridy++;
-		gbc.weighty = 0.6;
+		gbc.weighty = 0.7;
 		gbc.fill = GridBagConstraints.BOTH;
 		add(resultsTable, gbc);
 	}
