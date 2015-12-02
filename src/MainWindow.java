@@ -9,6 +9,7 @@ public class MainWindow {
 	
 	public MainWindow() {
 		window = new JFrame(WINDOW_TITLE);
+		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		createInterface();
 	}

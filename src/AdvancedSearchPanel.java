@@ -3,8 +3,9 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 
 import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JTextArea;
 
 public class AdvancedSearchPanel extends JPanel {
@@ -12,7 +13,7 @@ public class AdvancedSearchPanel extends JPanel {
 	
 	private JTextArea queryField;
 	private JButton searchButton;
-	private JLabel resultsLabel;
+	private JTable resultsTable;
 	
 	public AdvancedSearchPanel() {
 		super(new GridBagLayout());
@@ -22,7 +23,8 @@ public class AdvancedSearchPanel extends JPanel {
 				new Insets(3, 3, 3, 3), 0, 0);
 		
 		queryField = new JTextArea();
-		add(queryField, gbc);
+		JScrollPane queryPane = new JScrollPane(queryField);
+		add(queryPane, gbc);
 		
 		searchButton = new JButton("Search");
 		searchButton.addActionListener(e -> executeSearch());
@@ -31,14 +33,14 @@ public class AdvancedSearchPanel extends JPanel {
 		gbc.fill = GridBagConstraints.NONE;
 		add(searchButton, gbc);
 		
-		resultsLabel = new JLabel("RESULTS GO HERE");
+		resultsTable = new JTable();
 		gbc.gridy++;
 		gbc.weighty = 0.6;
 		gbc.fill = GridBagConstraints.BOTH;
-		add(resultsLabel, gbc);
+		add(resultsTable, gbc);
 	}
 	
 	private void executeSearch() {
-		resultsLabel.setText("Search results for \"" + queryField.getText() + "\"");
+		// set JTable's table model to table model for new ResultSet
 	}
 }

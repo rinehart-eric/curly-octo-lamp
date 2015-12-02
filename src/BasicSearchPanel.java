@@ -5,13 +5,14 @@ import java.awt.Insets;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTable;
 
 public class BasicSearchPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 	
 	private JLabel viewLabel;
 	private JComboBox<String> entitySelector;
-	private JLabel resultsLabel;
+	private JTable resultsTable;
 	
 	public BasicSearchPanel() {
 		super(new GridBagLayout());
@@ -29,16 +30,16 @@ public class BasicSearchPanel extends JPanel {
 		gbc.weightx = 1;
 		add(entitySelector, gbc);
 		
-		resultsLabel = new JLabel("RESULTS GO HERE");
+		resultsTable = new JTable();
 		gbc.gridx = 0;
 		gbc.gridy++;
 		gbc.gridwidth = 2;
 		gbc.weighty = 1;
 		gbc.fill = GridBagConstraints.BOTH;
-		add(resultsLabel, gbc);
+		add(resultsTable, gbc);
 	}
 	
 	private void executeSearch() {
-		resultsLabel.setText("Search results for \"" + entitySelector.getSelectedItem() + "\"");
+		// set JTable's table model to table model for new ResultSet
 	}
 }
