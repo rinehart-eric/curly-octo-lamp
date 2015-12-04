@@ -25,11 +25,11 @@ public class QueryCaller {
 	}
 	
 	public ResultSet queryGame(String searchKey) throws SQLException{
-		return this.basicQuery("Game", "title", searchKey);
+		return this.basicQuery("Game", "game_title", searchKey);
 	}
 	
 	public ResultSet queryFranchise(String searchKey) throws SQLException{
-		return this.basicQuery("Franchise", "name", searchKey);
+		return this.basicQuery("Franchise", "franchise_name", searchKey);
 	}
 	
 	public ResultSet queryPlatform(String searchKey) throws SQLException{

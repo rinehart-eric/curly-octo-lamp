@@ -5,14 +5,13 @@ import java.io.IOException;
 import java.sql.*;
 public class DatabaseBuilder {
 	
-	public static void createDatabse() throws IOException, SQLException{
+	public static void createDatabse(){
 			try {
 				Class.forName("com.mysql.jdbc.Driver");
 				Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/", "username", "password");
-				System.out.println("Conneced to server");
+				System.out.println("Connected to server");
 				Statement statement = conn.createStatement();
 				try{
-					statement.executeUpdate("CREATE DATABASE VideoGames");
 					conn.setCatalog("VideoGames");
 					statement = conn.createStatement();
 					File file = new File("database.txt");
@@ -24,7 +23,7 @@ public class DatabaseBuilder {
 					br.close();
 				}
 				catch(SQLException e){
-					System.out.println("Database already exists");
+					System.out.println(e.getMessage());
 				}
 			}
 			catch (ClassNotFoundException e ) {
@@ -40,11 +39,6 @@ public class DatabaseBuilder {
 	}
 	
 	public static void main(String[] args){
-		try{
-			DatabaseBuilder.createDatabse();
-		}
-		catch(SQLException | IOException e){
-			e.printStackTrace();
-		}
+		DatabaseBuilder.createDatabse();
 	}
 }

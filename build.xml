@@ -1,13 +1,21 @@
 <project name="database" basedir="." default="compile">
 
-    <property name="src.dir"     value="src"/>
-    <property name="lib.dir"	 value="lib"/>
+    <property name="src.dir"        value="src"/>
+    <property name="lib.dir"	    value="lib"/>
 
-    <property name="build.dir"   value="build"/>
-    <property name="classes.dir" value="${build.dir}/classes"/>
+    <property name="build.dir"      value="build"/>
+    <property name="classes.dir"    value="${build.dir}/classes"/>
+
+    <property name="main.class"     value="MainWindow"/>
+    <property name="populate.class" value="DatabaseBuilder"/>
 
     <path id="classpath">
         <fileset dir="${lib.dir}" includes="**/*.jar"/>
+    </path>
+
+    <path id="sqlclasspath">
+        <path refid="classpath"/>
+        <pathelement location="${classes.dir}"/>
     </path>
 
     <target name="clean">
@@ -17,5 +25,13 @@
     <target name="compile">
         <mkdir dir="${classes.dir}"/>
         <javac srcdir="${src.dir}" destdir="${classes.dir}" includes="**/*.java" classpathref="classpath" includeantruntime="false"/>
+    </target>
+
+    <target name="run" depends="compile">
+        <java dir="." classname="${main.class}" classpathref="sqlclasspath" fork="true"/>
+    </target>
+
+    <target name="populate" depends="compile">
+        <java dir="." classname="${populate.class}" classpathref="sqlclasspath" fork="true"/>
     </target>
 </project>
