@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 
@@ -55,7 +56,7 @@ public class BasicSearchPanel extends JPanel {
 		gbc.gridwidth = 3;
 		gbc.weighty = 1;
 		gbc.fill = GridBagConstraints.BOTH;
-		add(resultsTable, gbc);
+		add(new JScrollPane(resultsTable), gbc);
 	}
 	
 	private void executeSearch() {

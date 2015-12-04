@@ -33,7 +33,7 @@ public class QueryCaller {
 	}
 	
 	public ResultSet queryPlatform(String searchKey) throws SQLException{
-		return this.basicQuery("Platform", "platform name", searchKey);
+		return this.basicQuery("Platform", "platform_name", searchKey);
 	}
 	
 	public ResultSet queryDeveloper(String searchKey) throws SQLException{
@@ -45,9 +45,9 @@ public class QueryCaller {
 	}
 	
 	public ResultSet basicQuery(String table, String attribute, String searchKey) throws SQLException{
-		statement = connection.prepareStatement("SELECT * FROM " + table + " WHERE " + attribute + " = ?;");
+		statement = connection.prepareStatement("SELECT * FROM " + table + " WHERE " + attribute + " LIKE ?");
 		PreparedStatement ps = (PreparedStatement) statement;
-		ps.setString(1, searchKey); 
+		ps.setString(1, '%' + searchKey + '%');
 		return ps.executeQuery();
 	}
 	

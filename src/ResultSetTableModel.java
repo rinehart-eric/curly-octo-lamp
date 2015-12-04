@@ -42,10 +42,15 @@ public class ResultSetTableModel extends AbstractTableModel {
 	@Override
 	public String getColumnName(int column) {
 		try {
-			return metadata.getColumnName(column + 1);
+			return metadata.getColumnLabel(column + 1);
 		} catch (SQLException e) {
 			return "";
 		}
+	}
+	
+	@Override
+	public Class<?> getColumnClass(int columnIndex) {
+		return String.class;
 	}
 	
 	@Override

@@ -42,7 +42,7 @@ public class AdvancedSearchPanel extends JPanel {
 		gbc.gridy++;
 		gbc.weighty = 0.8;
 		gbc.fill = GridBagConstraints.BOTH;
-		add(resultsTable, gbc);
+		add(new JScrollPane(resultsTable), gbc);
 	}
 	
 	private void executeSearch() {
