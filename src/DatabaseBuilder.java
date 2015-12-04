@@ -18,6 +18,7 @@ public class DatabaseBuilder {
 					BufferedReader br = new BufferedReader(new FileReader(file));
 					String line;
 					while((line = br.readLine()) != null){
+						System.out.println("Executing command: " + line);
 						statement.executeUpdate(line);
 					}
 					br.close();

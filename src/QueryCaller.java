@@ -37,11 +37,11 @@ public class QueryCaller {
 	}
 	
 	public ResultSet queryDeveloper(String searchKey) throws SQLException{
-		return this.basicQuery("Developer", "developer_name", searchKey);
+		return this.basicQuery("Developer_Studio", "developer_name", searchKey);
 	}
 	
 	public ResultSet queryPublisher(String searchKey) throws SQLException{
-		return this.basicQuery("Publisher", "publisher_name", searchKey);
+		return this.basicQuery("Publisher_Studio", "publisher_name", searchKey);
 	}
 	
 	public ResultSet basicQuery(String table, String attribute, String searchKey) throws SQLException{
