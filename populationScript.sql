@@ -1,19 +1,20 @@
 #Create tables
 create table Game (
-	title varchar(255) not null,
+	game_title varchar(255) not null,
     game_release_date date not null,
     franchise_name varchar(255),
-    primary key(title, game_release_date),
+    primary key(game_title, game_release_date),
     foreign key(franchise_name) references Franchise
 );
 
 create table Franchise (
 	franchise_name varchar(255) not null,
     game_count integer not null,
-    first_release_date Date not null
+    first_release_date Date not null,
+    primary key(franchise_name)
 );
 
-create table Game_Platform(
+create table Game_Release_on_Platform(
 	game_title varchar(255) not null,
     game_release_date date not null,
     platform_name varchar(255) not null,
@@ -21,19 +22,20 @@ create table Game_Platform(
     sales integer not null,
     primary key(game_title, game_release_date, platform_name),
     check (sales > 0),
-    foreign key (game_title, game_release_date) references game,
-    foreign key (platform_name) references platform
+    foreign key (game_title, game_release_date) references Game,
+    foreign key (platform_name) references Platform
 );
 
 create table Platform (
-	platform_name varchar(255) not null unique,
+	platform_name varchar(255) not null,
     platform_release_date date not null,
     primary key(platform_name)
 );
 
 create table Developer_Studio (
-	developer_name varchar(255) not null unique,
-    date_founded date not null
+	developer_name varchar(255) not null,
+    date_founded date not null,
+    primary key(developer_name)
 );
 
 create table developed_by (
@@ -41,8 +43,8 @@ create table developed_by (
     game_title varchar(255) not null,
     game_release_date date not null,
     primary key(developer_name, game_title, game_release_date),
-    foreign key(developer_name) references developer_studio,
-    foreign key(game_title, game_release_date) references game
+    foreign key(developer_name) references Developer_Studio,
+    foreign key(game_title, game_release_date) references Game
 );
 
 create table produced_by (
@@ -50,12 +52,12 @@ create table produced_by (
     game_title varchar(255) not null,
     game_release_date date not null,
     primary key (producer_name, game_title, game_release_date),
-    foreign key(producer_name) references producer_studio,
-    foreign key(game_title,game_release_date) references game
+    foreign key(producer_name) references Producer_Studio,
+    foreign key(game_title,game_release_date) references Game
 );
 
 create table Producer_Studio (
-	producer_name varchar(255) not null unique,
+	producer_name varchar(255) not null,
     date_founded date not null,
     primary key(producer_name)
 );
