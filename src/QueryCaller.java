@@ -3,8 +3,8 @@ import java.sql.*;
 public class QueryCaller {
 	static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
 	static final String DB_URL = "jdbc:mysql://localhost/VideoGames";
-	static final String USERNAME = "root";
-	static final String PASSWORD = "ao30zy3xm8pg";
+	static final String USERNAME = "user";
+	static final String PASSWORD = "password";
 	Connection connection = null;
 	Statement statement = null;
 	

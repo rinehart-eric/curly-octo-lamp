@@ -16,6 +16,12 @@ public class BasicSearchPanel extends JPanel {
 	
 	private enum Entity {
 		GAME, PUBLISHER, DEVELOPER, PLATFORM, FRANCHISE;
+		
+		@Override
+		public String toString() {
+			String name = super.toString();
+			return name.charAt(0) + name.substring(1).toLowerCase();
+		}
 	}
 	
 	private JComboBox<Entity> entitySelector;
