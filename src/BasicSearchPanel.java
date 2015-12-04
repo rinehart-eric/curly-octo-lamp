@@ -4,7 +4,6 @@ import java.awt.Insets;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -12,7 +11,6 @@ import javax.swing.JTextField;
 public class BasicSearchPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 	
-	private JLabel viewLabel;
 	private JComboBox<String> entitySelector;
 	private JTextField searchText;
 	private JButton searchButton;
@@ -25,29 +23,26 @@ public class BasicSearchPanel extends JPanel {
 				GridBagConstraints.WEST, GridBagConstraints.NONE,
 				new Insets(3, 3, 3, 3), 0, 0);
 		
-		viewLabel = new JLabel("Search: ");
-		add(viewLabel, gbc);
-		
 		entitySelector = new JComboBox<>(new String[] {"Video Games", "Platforms", "Franchises"});
-		gbc.gridx++;
-		gbc.weightx = 0.5;
 		add(entitySelector, gbc);
 		
-		searchText = new JTextField(20);
+		searchText = new JTextField();
 		gbc.gridx++;
 		gbc.weightx = 1;
+		gbc.fill = GridBagConstraints.HORIZONTAL;
 		add(searchText, gbc);
 		
 		searchButton = new JButton("Search");
 		searchButton.addActionListener(e -> executeSearch());
 		gbc.gridx++;
 		gbc.weightx = 0;
+		gbc.fill = GridBagConstraints.NONE;
 		add(searchButton, gbc);
 		
 		resultsTable = new JTable();
 		gbc.gridx = 0;
 		gbc.gridy++;
-		gbc.gridwidth = 4;
+		gbc.gridwidth = 3;
 		gbc.weighty = 1;
 		gbc.fill = GridBagConstraints.BOTH;
 		add(resultsTable, gbc);
