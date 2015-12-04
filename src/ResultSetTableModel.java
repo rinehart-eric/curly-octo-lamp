@@ -2,9 +2,9 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 
-import javax.swing.table.DefaultTableModel;
+import javax.swing.table.AbstractTableModel;
 
-public class ResultSetTableModel extends DefaultTableModel {
+public class ResultSetTableModel extends AbstractTableModel {
 	private static final long serialVersionUID = 1L;
 	
 	private ResultSet results;
@@ -30,19 +30,34 @@ public class ResultSetTableModel extends DefaultTableModel {
 	}
 	
 	@Override
+	public int getRowCount() {
+		try {
+			results.last();
+			return results.getRow();
+		} catch (SQLException e) {
+			return 0;
+		}
+	}
+	
+	@Override
 	public String getColumnName(int column) {
 		try {
-			return metadata.getColumnName(column);
+			return metadata.getColumnLabel(column + 1);
 		} catch (SQLException e) {
 			return "";
 		}
 	}
 	
 	@Override
+	public Class<?> getColumnClass(int columnIndex) {
+		return String.class;
+	}
+	
+	@Override
 	public Object getValueAt(int row, int column) {
 		try {
-			results.absolute(row - 1);
-			return results.getObject(column);
+			results.absolute(row + 1);
+			return results.getObject(column + 1);
 		} catch (SQLException e) {
 			return null;
 		}

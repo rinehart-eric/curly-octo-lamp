@@ -1,6 +1,7 @@
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.sql.SQLException;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -15,8 +16,12 @@ public class AdvancedSearchPanel extends JPanel {
 	private JButton searchButton;
 	private JTable resultsTable;
 	
-	public AdvancedSearchPanel() {
+	private QueryCaller qc;
+	
+	public AdvancedSearchPanel(QueryCaller qc) {
 		super(new GridBagLayout());
+		
+		this.qc = qc;
 		
 		GridBagConstraints gbc = new GridBagConstraints(0, 0, 1, 1, 1, 0.2,
 				GridBagConstraints.CENTER, GridBagConstraints.BOTH,
@@ -37,10 +42,13 @@ public class AdvancedSearchPanel extends JPanel {
 		gbc.gridy++;
 		gbc.weighty = 0.8;
 		gbc.fill = GridBagConstraints.BOTH;
-		add(resultsTable, gbc);
+		add(new JScrollPane(resultsTable), gbc);
 	}
 	
 	private void executeSearch() {
-		// set JTable's table model to table model for new ResultSet
+		try {
+			resultsTable.setModel(ResultSetTableModel.createTableModel(qc.advancedQuery(queryField.getText())));
+		} catch (SQLException e) {
+		}
 	}
 }

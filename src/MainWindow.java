@@ -6,18 +6,24 @@ public class MainWindow {
 	private static final String WINDOW_TITLE = "Video Game Database";
 	
 	private JFrame window;
+	private QueryCaller qc;
 	
 	public MainWindow() {
 		window = new JFrame(WINDOW_TITLE);
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
+		initialize();
+	}
+	
+	private void initialize() {
+		qc = new QueryCaller();
 		createInterface();
 	}
 	
 	private void createInterface() {
 		JTabbedPane searchPane = new JTabbedPane();
-		searchPane.add("Basic search", new BasicSearchPanel());
-		searchPane.add("Advanced search", new AdvancedSearchPanel());
+		searchPane.add("Basic search", new BasicSearchPanel(qc));
+		searchPane.add("Advanced search", new AdvancedSearchPanel(qc));
 		
 		window.add(searchPane, SwingConstants.CENTER);
 	}
